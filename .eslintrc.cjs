@@ -22,6 +22,8 @@ module.exports = {
     ],
     "rules": {
         "import/no-unresolved":"off",
+        "react/react-in-jsx-scope": "off",
+        "react/prop-types": "off",
         "import/extensions": [
           "off",
           "ignorePackages",
