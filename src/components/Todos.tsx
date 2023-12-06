@@ -1,7 +1,6 @@
 import { Todo } from './Todo'
 import type { Todo as TodoType } from '../types'
 import { useState } from 'react'
-import { useAutoAnimate } from '@formkit/auto-animate/react'
 
 interface Props {
   todos: TodoType[]
@@ -17,20 +16,19 @@ export const Todos: React.FC<Props> = ({
   removeTodo
 }) => {
   const [isEditing, setIsEditing] = useState('')
-  const [parent] = useAutoAnimate(/* optional config */)
 
   return (
-    <ul className='todo-list' ref={parent}>
-    {todos?.map((todo) => (
-      <li
-        key={todo.id}
-        onDoubleClick={() => { setIsEditing(todo.id) }}
-        className={`
-          ${todo.completed ? 'completed' : ''}
-          ${isEditing === todo.id ? 'editing' : ''}
-        `}
-      >
-      <Todo
+    <ul className='todo-list'>
+      {todos?.map((todo) => (
+        <li
+          key={todo.id}
+          onDoubleClick={() => { setIsEditing(todo.id) }}
+          className={`
+            ${todo.completed ? 'completed' : ''}
+            ${isEditing === todo.id ? 'editing' : ''}
+          `}
+        >
+          <Todo
             key={todo.id}
             id={todo.id}
             title={todo.title}
@@ -42,7 +40,7 @@ export const Todos: React.FC<Props> = ({
             setIsEditing={setIsEditing}
           />
         </li>
-    ))}
+      ))}
     </ul>
   )
 }
